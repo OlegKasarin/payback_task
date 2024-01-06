@@ -4,10 +4,33 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>WorldOfPAYBACK.xcscheme_^#shared#^_</key>
+		<key>Prod.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>Test.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0005121D2B46F39C00F9B768</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0005122D2B46F39D00F9B768</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>000512372B46F39D00F9B768</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

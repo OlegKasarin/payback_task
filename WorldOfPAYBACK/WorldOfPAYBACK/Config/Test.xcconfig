@@ -1,0 +1,14 @@
+//
+//  Test.xcconfig
+//  WorldOfPAYBACK
+//
+//  Created by Oleg Kasarin on 04/01/2024.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// MARK: - Server Configuration
+
+protocol = https
+baseURL  = api-test.payback.com
