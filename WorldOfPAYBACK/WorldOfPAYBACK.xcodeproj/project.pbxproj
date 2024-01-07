@@ -27,6 +27,13 @@
 		000512702B49A2FF00F9B768 /* FetchTransactionsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0005126F2B49A2FF00F9B768 /* FetchTransactionsRequest.swift */; };
 		000512722B49A7B500F9B768 /* TransactionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000512712B49A7B500F9B768 /* TransactionsListViewModel.swift */; };
 		000512762B49AE2000F9B768 /* PBTransactions.json in Resources */ = {isa = PBXBuildFile; fileRef = 000512752B49AE2000F9B768 /* PBTransactions.json */; };
+		0005127A2B49B54E00F9B768 /* TransactionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000512792B49B54E00F9B768 /* TransactionsResponse.swift */; };
+		0005127C2B49B56300F9B768 /* TransactionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0005127B2B49B56300F9B768 /* TransactionResponse.swift */; };
+		0005127E2B49B57B00F9B768 /* TransactionDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0005127D2B49B57B00F9B768 /* TransactionDetailResponse.swift */; };
+		000512802B49B58E00F9B768 /* TransactionDetailValueResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0005127F2B49B58E00F9B768 /* TransactionDetailValueResponse.swift */; };
+		000512822B49BA6A00F9B768 /* TransactionAliasResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000512812B49BA6A00F9B768 /* TransactionAliasResponse.swift */; };
+		000512842B4ACB7400F9B768 /* BusinessUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000512832B4ACB7400F9B768 /* BusinessUtils.swift */; };
+		000512862B4AEC2500F9B768 /* TransactionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000512852B4AEC2500F9B768 /* TransactionCategory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +80,13 @@
 		0005126F2B49A2FF00F9B768 /* FetchTransactionsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTransactionsRequest.swift; sourceTree = "<group>"; };
 		000512712B49A7B500F9B768 /* TransactionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsListViewModel.swift; sourceTree = "<group>"; };
 		000512752B49AE2000F9B768 /* PBTransactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PBTransactions.json; sourceTree = "<group>"; };
+		000512792B49B54E00F9B768 /* TransactionsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsResponse.swift; sourceTree = "<group>"; };
+		0005127B2B49B56300F9B768 /* TransactionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionResponse.swift; sourceTree = "<group>"; };
+		0005127D2B49B57B00F9B768 /* TransactionDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailResponse.swift; sourceTree = "<group>"; };
+		0005127F2B49B58E00F9B768 /* TransactionDetailValueResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailValueResponse.swift; sourceTree = "<group>"; };
+		000512812B49BA6A00F9B768 /* TransactionAliasResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionAliasResponse.swift; sourceTree = "<group>"; };
+		000512832B4ACB7400F9B768 /* BusinessUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessUtils.swift; sourceTree = "<group>"; };
+		000512852B4AEC2500F9B768 /* TransactionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				000512632B4700F900F9B768 /* Storage */,
+				000512832B4ACB7400F9B768 /* BusinessUtils.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -222,7 +237,8 @@
 		0005126B2B49A26000F9B768 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0005126C2B49A26800F9B768 /* Transaction.swift */,
+				000512782B49B53600F9B768 /* DTO */,
+				000512772B49B52D00F9B768 /* Business */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -250,6 +266,27 @@
 				000512732B49A7BA00F9B768 /* TransactionsList */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		000512772B49B52D00F9B768 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				0005126C2B49A26800F9B768 /* Transaction.swift */,
+				000512852B4AEC2500F9B768 /* TransactionCategory.swift */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
+		000512782B49B53600F9B768 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				000512792B49B54E00F9B768 /* TransactionsResponse.swift */,
+				0005127B2B49B56300F9B768 /* TransactionResponse.swift */,
+				000512812B49BA6A00F9B768 /* TransactionAliasResponse.swift */,
+				0005127D2B49B57B00F9B768 /* TransactionDetailResponse.swift */,
+				0005127F2B49B58E00F9B768 /* TransactionDetailValueResponse.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,12 +422,19 @@
 			files = (
 				000512572B46F72600F9B768 /* URLRequestBuilder.swift in Sources */,
 				000512722B49A7B500F9B768 /* TransactionsListViewModel.swift in Sources */,
+				000512802B49B58E00F9B768 /* TransactionDetailValueResponse.swift in Sources */,
 				000512622B46FDCE00F9B768 /* AppStorage.swift in Sources */,
+				000512822B49BA6A00F9B768 /* TransactionAliasResponse.swift in Sources */,
+				0005127A2B49B54E00F9B768 /* TransactionsResponse.swift in Sources */,
 				0005126D2B49A26800F9B768 /* Transaction.swift in Sources */,
+				0005127E2B49B57B00F9B768 /* TransactionDetailResponse.swift in Sources */,
+				000512862B4AEC2500F9B768 /* TransactionCategory.swift in Sources */,
 				000512652B47011000F9B768 /* PlistConfiguration.swift in Sources */,
 				000512512B46F44E00F9B768 /* RequestExecutor.swift in Sources */,
 				000512552B46F4B800F9B768 /* HTTPPathPattern.swift in Sources */,
+				000512842B4ACB7400F9B768 /* BusinessUtils.swift in Sources */,
 				000512682B49A1E600F9B768 /* ServiceAssembly.swift in Sources */,
+				0005127C2B49B56300F9B768 /* TransactionResponse.swift in Sources */,
 				000512242B46F39C00F9B768 /* ContentView.swift in Sources */,
 				000512532B46F47C00F9B768 /* HTTPRequest.swift in Sources */,
 				000512222B46F39C00F9B768 /* WorldOfPAYBACKApp.swift in Sources */,
