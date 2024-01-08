@@ -9,13 +9,19 @@ import Foundation
 
 struct BusinessUtils {
     
+    static var currencySign: String {
+        "PBP"
+    }
+    
+    // MARK: - Date formatter
+    
     static var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = Locale.current
         return formatter
     }
     
-    // MARK: - Date
+    // MARK: - Date display
     
     static func displayDateString(fromDate date: Date, format: PBDateFormat) -> String {
         let formatter = dateFormatter

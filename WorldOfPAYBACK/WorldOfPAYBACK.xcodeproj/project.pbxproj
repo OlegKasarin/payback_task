@@ -34,6 +34,7 @@
 		000512822B49BA6A00F9B768 /* TransactionAliasResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000512812B49BA6A00F9B768 /* TransactionAliasResponse.swift */; };
 		000512842B4ACB7400F9B768 /* BusinessUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000512832B4ACB7400F9B768 /* BusinessUtils.swift */; };
 		000512862B4AEC2500F9B768 /* TransactionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000512852B4AEC2500F9B768 /* TransactionCategory.swift */; };
+		000512882B4C56D800F9B768 /* TransactionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000512872B4C56D800F9B768 /* TransactionDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		000512812B49BA6A00F9B768 /* TransactionAliasResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionAliasResponse.swift; sourceTree = "<group>"; };
 		000512832B4ACB7400F9B768 /* BusinessUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessUtils.swift; sourceTree = "<group>"; };
 		000512852B4AEC2500F9B768 /* TransactionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategory.swift; sourceTree = "<group>"; };
+		000512872B4C56D800F9B768 /* TransactionDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				000512732B49A7BA00F9B768 /* TransactionsList */,
+				000512872B4C56D800F9B768 /* TransactionDetailsView.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				0005127E2B49B57B00F9B768 /* TransactionDetailResponse.swift in Sources */,
 				000512862B4AEC2500F9B768 /* TransactionCategory.swift in Sources */,
 				000512652B47011000F9B768 /* PlistConfiguration.swift in Sources */,
+				000512882B4C56D800F9B768 /* TransactionDetailsView.swift in Sources */,
 				000512512B46F44E00F9B768 /* RequestExecutor.swift in Sources */,
 				000512552B46F4B800F9B768 /* HTTPPathPattern.swift in Sources */,
 				000512842B4ACB7400F9B768 /* BusinessUtils.swift in Sources */,

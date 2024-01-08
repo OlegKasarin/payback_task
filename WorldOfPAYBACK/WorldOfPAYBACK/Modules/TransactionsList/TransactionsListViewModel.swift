@@ -20,9 +20,16 @@ final class TransactionsListViewModel: ObservableObject {
         switch selectedCategory {
         case .all:
             return transactions
-        case .first, .second:
+        case .first, .second, .third:
             return transactions.filter { $0.category == selectedCategory.categoryNumber }
         }
+    }
+    
+    var sumToDisplay: String {
+        let sum = transactionsToDisplay.reduce(0) { partialResult, transaction in
+            partialResult + transaction.amount
+        }
+        return String("Sum: \(sum)")
     }
     
     init(transactionsService: TransactionsServiceProtocol) {
