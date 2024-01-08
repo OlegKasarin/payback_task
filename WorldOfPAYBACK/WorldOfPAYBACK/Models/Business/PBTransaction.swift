@@ -1,5 +1,5 @@
 //
-//  Transaction.swift
+//  PBTransaction.swift
 //  WorldOfPAYBACK
 //
 //  Created by Oleg Kasarin on 06/01/2024.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct Transaction: Hashable {
+struct PBTransaction: Identifiable, Hashable {
     let id: Int
     let partnerDisplayName: String
     let category: Int
     
-    private let description: String?
+    let description: String?
     let bookingDate: Date
     let amount: Int
-    private let currency: String
+    let currency: String
     
     // MARK: - Computed properties
     
@@ -23,16 +23,16 @@ struct Transaction: Hashable {
         String(amount) + " " + currency
     }
     
-    var descriptionLabel: String {
-        description ?? ""
-    }
-    
     var dateLabel: String {
         BusinessUtils.displaySmartDateString(date: bookingDate)
     }
+    
+    var timeLabel: String {
+        BusinessUtils.displayDateString(fromDate: bookingDate, format: .HHmm)
+    }
 }
 
-extension Transaction {
+extension PBTransaction {
     init?(response: TransactionResponse) {
         let dateFormatter: DateFormatter = {
            let formatter = DateFormatter()
@@ -61,8 +61,8 @@ extension Transaction {
         )
     }
     
-    static var mocked: Transaction {
-        Transaction(
+    static var mocked: PBTransaction {
+        PBTransaction(
             id: 1234,
             partnerDisplayName: "PARTNER NAME",
             category: 1,

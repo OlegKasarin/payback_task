@@ -41,6 +41,7 @@ struct BusinessUtils {
 enum PBDateFormat: String {
     case dMMM     = "d MMM"
     case dMMMYYYY = "d MMM YYYY"
+    case HHmm     = "HH:mm"
 }
 
 // MARK: - Date extension

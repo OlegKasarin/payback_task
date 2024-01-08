@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  TransactionsListView.swift
 //  WorldOfPAYBACK
 //
 //  Created by Oleg Kasarin on 04/01/2024.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct TransactionsListView: View {
     @ObservedObject var viewModel: TransactionsListViewModel
     @State private var categoryStatusBar: TransactionCategory = .all
     
-    @State private var mainStack: [Transaction] = []
+    @State private var mainStack: [PBTransaction] = []
     
     var body: some View {
         NavigationStack(path: $mainStack) {
@@ -22,24 +22,20 @@ struct ContentView: View {
                             .tag($0)
                     }
                 }
+                .padding()
                 .labelsHidden()
                 .pickerStyle(.segmented)
                 .onChange(of: categoryStatusBar, perform: { value in
                     viewModel.updateSelectedCategory(value)
                 })
-                .padding()
                 
-                List(viewModel.transactionsToDisplay, id: \.id) { transaction in
-                    NavigationLink(value: transaction) {
-                        TransactionCellView(transaction: transaction)
-                    }
+                List(viewModel.transactionsSections, id: \.date) { section in
+                    sectionFor(section: section)
                 }
                 
-                Text(viewModel.sumToDisplay)
-                    .font(.title)
-                    .bold()
+                sumView(sum: viewModel.sumToDisplay)
             }
-            .navigationDestination(for: Transaction.self) { transaction in
+            .navigationDestination(for: PBTransaction.self) { transaction in
                 TransactionDetailsView(transaction: transaction)
             }
             .navigationTitle("Transactions List")
@@ -61,36 +57,59 @@ struct ContentView: View {
             }, message: {})
         }
     }
+    
+    private func sectionFor(section: TransactionsSection) -> some View {
+        Section {
+            ForEach(section.transactions) { transaction in
+                NavigationLink(value: transaction) {
+                    TransactionCellView(transaction: transaction)
+                }
+            }
+        } header: {
+            Text(section.titleLabel)
+        }
+    }
+    
+    private func sumView(sum: String) -> some View {
+        Text(sum)
+            .font(.title)
+            .bold()
+    }
 }
 
 struct TransactionCellView: View {
-    let transaction: Transaction
+    let transaction: PBTransaction
     
     var body: some View {
-        VStack(spacing: 8) {
-            HStack {
-                Text(transaction.partnerDisplayName)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Text(transaction.amountLabel)
-            }
-            
-            Text(transaction.descriptionLabel)
-                .font(.caption)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            Text(transaction.dateLabel)
-                .font(.caption)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
+        HStack {
             Text(String(transaction.category))
                 .font(.callout)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .bold()
+                .padding()
+            
+            VStack(spacing: 8) {
+                HStack {
+                    Text(transaction.partnerDisplayName)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text(transaction.amountLabel)
+                }
+                
+                if let description = transaction.description {
+                    Text(description)
+                        .font(.caption)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                
+                Text(transaction.timeLabel)
+                    .font(.caption)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
         }
     }
 }
 
 #Preview {
-    ContentView(viewModel: TransactionsListViewModel(
+    TransactionsListView(viewModel: TransactionsListViewModel(
         transactionsService: ServiceAssembly.transactionsService
     ))
 }

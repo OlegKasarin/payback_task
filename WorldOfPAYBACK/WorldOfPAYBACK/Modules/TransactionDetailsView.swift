@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct TransactionDetailsView: View {
-    let transaction: Transaction
+    let transaction: PBTransaction
     
     var body: some View {
         Text(transaction.partnerDisplayName)
             .font(.title)
             .padding()
-        Text(transaction.descriptionLabel)
+        Text(transaction.description ?? "")
     }
 }
 
 #Preview {
-    TransactionDetailsView(transaction: Transaction.mocked)
+    TransactionDetailsView(transaction: PBTransaction.mocked)
 }
