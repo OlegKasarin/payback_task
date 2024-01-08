@@ -11,8 +11,8 @@ import SwiftUI
 struct WorldOfPAYBACKApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: TransactionsListViewModel(
-                transactionsService: ServiceAssembly.transactionsService
+            TransactionsListView(viewModel: TransactionsListViewModel(
+                transactionsService: ServiceAssembly.fakeTransactionsService
             ))
         }
     }

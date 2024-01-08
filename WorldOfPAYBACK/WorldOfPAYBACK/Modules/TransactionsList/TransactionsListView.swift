@@ -110,6 +110,6 @@ struct TransactionCellView: View {
 
 #Preview {
     TransactionsListView(viewModel: TransactionsListViewModel(
-        transactionsService: ServiceAssembly.transactionsService
+        transactionsService: ServiceAssembly.fakeTransactionsService
     ))
 }

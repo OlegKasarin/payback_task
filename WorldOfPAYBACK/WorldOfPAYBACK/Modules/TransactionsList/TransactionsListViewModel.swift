@@ -8,8 +8,12 @@
 import Foundation
 
 struct TransactionsSection {
-    let title: String
+    let date: Date
     let transactions: [PBTransaction]
+    
+    var titleLabel: String {
+        BusinessUtils.displaySmartDateString(date: date)
+    }
 }
 
 final class TransactionsListViewModel: ObservableObject {
@@ -21,23 +25,27 @@ final class TransactionsListViewModel: ObservableObject {
     
     private let transactionsService: TransactionsServiceProtocol
     
+    init(transactionsService: TransactionsServiceProtocol) {
+        self.transactionsService = transactionsService
+    }
+    
     var transactionsSections: [TransactionsSection] {
-        var dataSource: [String: [PBTransaction]] = [:]
+        var dataSource: [Date: [PBTransaction]] = [:]
         for transaction in transactionsToDisplay {
-            if var transactions = dataSource[transaction.dateLabel] {
+            if var transactions = dataSource[transaction.bookingDate] {
                 transactions.append(transaction)
-                dataSource[transaction.dateLabel] = transactions
+                dataSource[transaction.bookingDate] = transactions
             } else {
-                dataSource[transaction.dateLabel] = [transaction]
+                dataSource[transaction.bookingDate] = [transaction]
             }
         }
         
-        return dataSource.map { 
-            TransactionsSection(title: $0.key, transactions: $0.value)
-        }
+        return dataSource
+            .map { TransactionsSection(date: $0.key, transactions: $0.value) }
+            .sorted(by: { $0.date > $1.date })
     }
     
-    var transactionsToDisplay: [PBTransaction] {
+    private var transactionsToDisplay: [PBTransaction] {
         switch selectedCategory {
         case .all:
             return transactions
@@ -56,7 +64,7 @@ final class TransactionsListViewModel: ObservableObject {
             return String("\(sum) \($0.key)")
         }.joined(separator: " | ")
         
-        return result
+        return String("Sum: \(result)")
         
         // Assumption that we have one common corrency
 //        let sum = transactionsToDisplay.reduce(0) { partialResult, transaction in
@@ -65,19 +73,14 @@ final class TransactionsListViewModel: ObservableObject {
 //        return String("Sum: \(sum)")
     }
     
-    init(transactionsService: TransactionsServiceProtocol) {
-        self.transactionsService = transactionsService
-    }
-    
     @MainActor
     func fetch() async throws {
         isLoading = true
         do {
-            let transactions = try await transactionsService.fetchMocked() 
-            let sortedTransactions = transactions.sorted(by: { $0.bookingDate > $1.bookingDate })
+            let transactions = try await transactionsService.fetch()
             
             isLoading = false
-            self.transactions = sortedTransactions
+            self.transactions = transactions
         } catch {
             isLoading = false
             isError = true

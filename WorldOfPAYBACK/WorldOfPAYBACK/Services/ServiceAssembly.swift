@@ -13,4 +13,8 @@ final class ServiceAssembly {
     static var transactionsService: TransactionsServiceProtocol {
         TransactionsService(executor: NetworkAssembly.requestExecutor)
     }
+    
+    static var fakeTransactionsService: TransactionsServiceProtocol {
+        FakeTransactionsService()
+    }
 }

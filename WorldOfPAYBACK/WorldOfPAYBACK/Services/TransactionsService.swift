@@ -9,7 +9,6 @@ import Foundation
 
 protocol TransactionsServiceProtocol {
     func fetch() async throws -> [PBTransaction]
-    func fetchMocked() async throws -> [PBTransaction]
 }
 
 final class TransactionsService {
@@ -28,24 +27,6 @@ extension TransactionsService: TransactionsServiceProtocol {
         
         let response: [TransactionResponse] = try await executor.execute(request: request)
         let transactions = response.compactMap {
-            PBTransaction(response: $0)
-        }
-        
-        return transactions
-    }
-    
-    func fetchMocked() async throws -> [PBTransaction] {
-        await Task(priority: .medium) {
-          // Block the thread as a real heavy-computation function will.
-          await withUnsafeContinuation { continuation in
-            Thread.sleep(forTimeInterval: 1)
-            continuation.resume()
-          }
-        }.value
-
-        let mocked = TransactionResponse.mockedTransactions()
-        
-        let transactions = mocked.compactMap {
             PBTransaction(response: $0)
         }
         
