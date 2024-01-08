@@ -5,31 +5,44 @@
 //  Created by Oleg Kasarin on 08/01/2024.
 //
 
+@testable import WorldOfPAYBACK
 import XCTest
 
 final class TransactionsServiceTests: XCTestCase {
-
+    private var sut: TransactionsServiceProtocol!
+    
+    private var requestExecutorSpy: RequestExecutorSpy!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        requestExecutorSpy = RequestExecutorSpy()
+        sut = TransactionsService(executor: requestExecutorSpy)
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
+        requestExecutorSpy = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testFetchSuccess() async throws {
+        requestExecutorSpy.stubbedExecuteRequestTResult = TransactionsResponse.mockedResponse()
+        let transactions = try await sut.fetch()
+        
+        XCTAssertFalse(transactions.isEmpty, "Expected non empty array of transactions")
+        
+        XCTAssertTrue(requestExecutorSpy.invokedExecuteRequestT)
+        XCTAssertEqual(requestExecutorSpy.invokedExecuteRequestTCount, 1)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testFetchFailure() async throws {
+        requestExecutorSpy.stubbedExecuteRequestTError = "error"
+        
+        do {
+            let _ = try await sut.fetch()
+        } catch {
+            XCTAssertNotNil(error)
         }
+        
+        XCTAssertTrue(requestExecutorSpy.invokedExecuteRequestT)
+        XCTAssertEqual(requestExecutorSpy.invokedExecuteRequestTCount, 1)
     }
-
 }
